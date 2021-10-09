@@ -32,6 +32,7 @@ class JD(object):
         self.img_dir=img_dir
         self.down_dir=r"./images/jd4/";
         self.down_img_count=down_img_count;
+        self.cookies = None
 
     def is_pixel_equal(self, img1, img2, x, y):
         """
@@ -185,13 +186,16 @@ class JD(object):
                             continue;
                         else:
                             print("登录成功："+title);
+                            # 登录成功 获取cookie
+                            self.cookies = self.dr.get_cookies()
+                            print(self.cookies)
                             break;
                 else:
                     time.sleep(1.2);
                     logbtn.click();          
-        
         print('结束时间',datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'))
         pass
+        return True
     
     def do_login(self):
         curent_img= self.get_images();    
