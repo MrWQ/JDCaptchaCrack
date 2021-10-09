@@ -81,7 +81,8 @@ class JD(object):
         # 减速阈值
         mid = distance * 4 / 5
         # 时间间隔
-        t = 0.2
+        # t = 0.2
+        t = 0.1
         # 初始速度
         v = 0
 
@@ -208,7 +209,8 @@ class JD(object):
         gap= self.get_gap(image1,curent_img);
         print(gap);
 
-        track=self.get_track7(gap+20.85);
+        # track=self.get_track7(gap+20.85);
+        track=self.get_track7(gap + 50);
         self.dragging(track);
         pass
     
@@ -216,9 +218,16 @@ class JD(object):
          # 按照行动轨迹先正向滑动，后反滑动
         button = self.dr.find_element_by_class_name('JDJRV-slide-btn')
         ActionChains(self.dr).click_and_hold(button).perform()
-        tracks_backs=[-3,-3,-2,-2,-2,-2,-2,-1,-1,-1] #-20
+        tracks_backs=[-3,-3,-2,-2,-2,-2,-2,-1,-1,-1,-3,-2,-2,-5] #-20
 
+        # 正向滑动
         for track in tracks:
+            # for ran in range(random.randint(1, 4)):
+            #     print("ran",str(ran))
+            #     if ran == 1:
+            #         sleep_time = random.randint(0,100) / 100
+            #         print( 'sleep_time',str(sleep_time))
+            #         time.sleep(sleep_time)
             ActionChains(self.dr).move_by_offset(xoffset=track, yoffset=0).perform()
 
         time.sleep(0.18)
@@ -268,8 +277,9 @@ class JD(object):
         return page_snap_obj;
 
 
-#参数1：1=下载素材，2=开始合并素材，3=开始登录
-#参数2：是否启用chrome headless 模式、
-#参数3：登录滑块素材下载个数
-jd=JD(3,False,90);
-jd.autologin("https://passport.jd.com/new/login.aspx","用户名","密码")
+if __name__ == '__main__':
+    #参数1：1=下载素材，2=开始合并素材，3=开始登录
+    #参数2：是否启用chrome headless 模式、
+    #参数3：登录滑块素材下载个数
+    jd=JD(3,False,90);
+    jd.autologin("https://passport.jd.com/new/login.aspx", 账号, 密码)
