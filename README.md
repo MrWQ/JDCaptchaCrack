@@ -13,5 +13,7 @@ Python + Selenium + chromedirver 破解京东登录滑块验证码
 
 运行效果如下：
 
-![](/images/run.gif)
-s
+![](images/run.gif)
+
+
+对 https://github.com/gebiWangshushu/JDCaptchaCrack 修改优化。感谢原作者。
