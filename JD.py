@@ -11,6 +11,7 @@ import time,random,datetime,os
 import math
 from functools import reduce
 import operator
+import platform
 
 class JD(object):
 
@@ -26,7 +27,14 @@ class JD(object):
         # 设置屏幕器宽高
         chrome_options.add_argument("--window-size=1440,750");
 
-        self.dr=webdriver.Chrome(executable_path=(r"./chromedriver_win32/chromedriver.exe"), chrome_options=chrome_options)
+        #  适应linux平台chrome驱动
+        if platform.system() == "Windows":
+            webdriver_path = os.path.join(r"./chromedriver_win32/chromedriver.exe")
+        elif platform.system() == "Linux":
+            webdriver_path = os.path.join(r"./chromedriver_win32/chromedriver")
+        else:
+            pass
+        self.dr=webdriver.Chrome(executable_path=(webdriver_path), chrome_options=chrome_options)
         self.dr.maximize_window();
         self.step=step;
         self.img_dir=img_dir
@@ -194,7 +202,8 @@ class JD(object):
                     time.sleep(1.2);
                     logbtn.click();          
         print('结束时间',datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f'))
-        pass
+        # 最后关闭浏览器
+        self.dr.close()
         return True
     
     def do_login(self):

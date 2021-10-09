@@ -16,4 +16,6 @@ Python + Selenium + chromedirver 破解京东登录滑块验证码
 ![](images/run.gif)
 
 
+webdriver 下载地址：http://chromedriver.storage.googleapis.com/index.html
+
 对 https://github.com/gebiWangshushu/JDCaptchaCrack 修改优化。感谢原作者。
